@@ -22,38 +22,31 @@ public class metoInsercion {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         
-        int vector[];
-        int nElem;
-        int pos;
-        int aux;
+        int [] vector;
+        int nElem, aux;
         
-        nElem = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero "
-                + "de elementos para el vector"));
+        nElem=Integer.parseInt(JOptionPane.showInputDialog("Ingresa el numero "
+                + "de elementos al vector"));
         
-        vector = new int[nElem];
+        vector=new int[nElem];
         
+        //llenar vector
         for (int i = 0; i < nElem; i++) {
-            System.out.println((i+1)+". Digite un numero");
-            vector [i] = entrada.nextInt();
-        }
-        
-        //mostramos el vector como se ingreso
-        System.out.println("Vector en el orden ingresado");
-        for (int i = 0; i < nElem; i++) {
-            System.out.println(vector[i]);
+            System.out.println("Ingresa el numero "+(i+1));
+            vector[i]=entrada.nextInt();
         }
         
         //metodo insercion
-        for (int i = 0; i < nElem; i++) {
-            pos = i;//seleccionador de posicion
-            aux = vector[i];//elemento con el que se va comparar
-            
-            while ((pos > 0) && (vector[pos-1] > aux)) {                
-                vector[pos] = vector[pos-1];
-                pos--;
+        for (int i = 1; i < nElem; i++) {
+            //buscamos la posicion correecta del elemento destino
+            int j=i;
+            aux = vector[i];
+            //localizamos el punto de insercion buscando hacia abajo
+            while (j>0 && aux<vector[j-1]) {                
+                vector[j] = vector[j-1];
+                j--;
             }
-            
-            vector[pos] = aux;
+            vector[j] = aux;
         }
         
         System.out.println("Vector en orden ascendente");
